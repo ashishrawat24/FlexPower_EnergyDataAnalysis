@@ -1,0 +1,97 @@
+Data Points
+
+a. Wind Day Ahead Forecast [in MW]
+b. Wind Intraday Forecast [in MW]
+c. PV Day Ahead Forecast [in MW]
+d. PV Intraday Forecast [in MW]
+e. Day Ahead Price hourly [in EUR/MWh]
+f. Intraday Price Quarter Hourly  [in EUR/MWh]
+g. Intraday Price Hourly  [in EUR/MWh]
+h. Imbalance Price Quarter Hourly  [in EUR/MWh]
+
+Files: read me file, data file, png file, SQLite file
+
+Background:
+
+Task 1: A minimal reporting tool for a small trade database and expose them as an API
+Task 2: Energy data analysis and build your own trading strategy
+
+
+Task 1: Minimal reporting tool 
+
+For example if the orderbook contains an order to sell 10 mw for 10 euros/mwh and another trader submits an order to buy 5 mw for 11 euros/mwh, the orders are matched by the exchange and a trade is generated for 5mw at 10 euros/mwh.
+
+Note: Total six trades are made with strategy 1 and strategy 2 
+
+
+
+Task 1.1 Write a function that computes the total buy volume and sell volume (include all strategy)
+
+connect to the database (use MY SQL Data connector)
+load the dataset
+focus on side (buy and sell separately)
+add all the buy and sell volume
+
+
+
+
+Task 1.2 Write a function that computes the PnL (profit and loss) of each strategy in euros (separate the strategies) and return 0 if there is no trade
+
+def a function of pnl
+focus on strategy column 
+identify various strategy like 1 and 2 so on by assigning startergy_id 
+
+for all trades in the id column, (buy means negative values and sell means positive values and calculate income for each trade
+then sum all incomes for each strategy 
+if there is no trade then return 0 that correspond to the strategy id
+
+
+Task 2: Data analysis and building a trading strategy
+
+Import the datafile called "analysis_task_data.xlsx"
+
+
+
+Task 2.1 Wind/PV Power was forecasted to produced in German in 2021 [in MWh] 
+
+Considering conversion rate 0.25
+
+
+
+Task 2.2 average Wind/Solar production for 2021 over a 24h period for Intraday and Day Ahead
+
+conversion date time separately  
+grouping by hour and calculating the avg
+
+
+
+Task 2.3: Calculate the average value for Wind/PV using Day Ahead Forecasts and DA Prices
+
+Extracting relevant columns
+Average Value (EUR/MWh)= ∑(Power Forecast (MW)) \ ∑(Power Forecast (MW)×DA Price (EUR/MWh))
+​
+
+
+Task 2.4 - Identify Days with Highest & Lowest Renewable Production
+
+convert daytime to date and time format
+Renewable is wind + solar
+grouping by day
+min and max and identify the days 
+
+
+Task 2.5 Average DA Price: Weekdays vs. Weekends
+
+change into day time
+identify weekdays and weekends (0 = Monday, 6 = Sunday)
+cal avg day ahead price
+
+
+Task 2.6 Connecting Battery Storage and Calculating Revenue 
+
+convert daytime to date and time format
+grouping by day
+Develop logic of charging battery at lowest price and discharging at highest for the day
+Taking the AC by AC efficiency of 1 MWh battery system as 0.95 considering some system losses
+
+
